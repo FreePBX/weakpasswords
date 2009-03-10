@@ -25,8 +25,9 @@ function weakpasswords_get_config($engine) {
 			// Generate new notifications
 			$weak = weakpasswords_get_users();
 			if(sizeof($weak) > 0)  {
-				foreach($weak as $device => $message)  {
-					$nt->add_security("weakpasswords", $device, "Weak secret for device $device: $message");
+				foreach($weak as $details)  {
+					$extended_text = "Warning: The use of SIP/IAX passwords that are weak can allow hackers to make brute force registrations and possibly make calls through your PBX.  It is strongly recommended, you choose strong secrets.".$details['deviceortrunk']." ".$details['name']." has a weak secret of ".$details['secret'].": ".$details['message'];
+					$nt->add_security("weakpasswords", $details['name'], $details['deviceortrunk']." ".$details['name'].": ".$details['message'],$extended_text);
 				}
 
 			}
@@ -37,26 +38,37 @@ function weakpasswords_get_config($engine) {
 function weakpasswords_get_users()  {
 	global $db;
 
-	$sql = "SELECT id as device,data as secret FROM sip WHERE keyword='secret'";
+	$sql = "SELECT 'SIP' as tech,s.id as id, s2.data as device,s.data as secret FROM sip s LEFT JOIN sip s2 ON s.id=s2.id AND s2.keyword='account' WHERE s.keyword='secret'";
 	$sipsecrets = sql($sql,"getAll",DB_FETCHMODE_ASSOC);
+	$sql = "SELECT 'IAX' as tech,s.id as id, s2.data as device,s.data as secret FROM iax s LEFT JOIN iax s2 ON s.id=s2.id AND s2.keyword='account' WHERE s.keyword='secret'";
+	$iaxsecrets = sql($sql,"getAll",DB_FETCHMODE_ASSOC);
+	$secrets = array_merge($sipsecrets,$iaxsecrets);
 	$weak = array();
-	foreach($sipsecrets as $sip)  {
-		$device = $sip['device'];
-		$secret = $sip['secret'];
+	foreach($secrets as $arr)  {
+		$name = $arr['device'];
+		$id = $arr['id'];
+		$secret = $arr['secret'];
+		$tech = $arr['tech'];
 
+		if($id == $name)  {
+			$deviceortrunk = "Extension/Device";
+		}
+		else  {
+			$deviceortrunk = "$tech Trunk";
+		}
 		$reversed = strrev($secret);
 		$match = "0123456789";
 		if(strpos($match,$secret) || strpos($match,$reversed))  {
-			$weak[$device] = "Secret $secret has sequential digits";
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => "Secret has sequential digits", "secret" => $secret);
 		}
 		else if($device == $secret)  {
-			$weak[$device] = "Secret $secret is same as device";
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => "Secret same as device", "secret" => $secret);
 		}
 		else if(preg_match("/(.)\\1{3,}/",$secret,$regs))  {
-			$weak[$device] = "Secret $secret contains consecutive digit ".$regs[1];
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => "Secret has consecutive digit ".$regs[1], "secret" => $secret);
 		}
 		else if(strlen($secret) < 6)  {
-			$weak[$device] = "Secret $secret is less than 6 digits long";
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => "Secret less than 6 digits", "secret" => $secret);
 		}
 	}
 	return $weak;
