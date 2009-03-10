@@ -1,0 +1,20 @@
+<module>
+	<rawname>weakpasswords</rawname>
+	<name>Weak Password Detection</name>
+	<version>2.5.0.0</version>
+	<type>setup</type>
+	<category>Internal Options &amp; Configuration</category>
+	<changelog>
+		*2.5.0.0* Initial release
+	</changelog>
+	<depends>
+		<version>2.5.0</version>
+	</depends>
+	<description>This module detects weak SIP secrets and sets security notifictions accordingly
+	</description>
+	<menuitems>
+		<weakpasswords>Weak Password Detection</weakpasswords>
+	</menuitems>
+	<location>release/2.5/weakpasswords-2.5.0.0.tgz</location>
+	<md5sum>1</md5sum>
+</module>
