@@ -51,7 +51,7 @@ function weakpasswords_get_users()  {
 		$tech = $arr['tech'];
 
 		if($id == $name)  {
-			$deviceortrunk = "Extension/Device";
+			$deviceortrunk = "Extension";
 		}
 		else  {
 			$deviceortrunk = "$tech Trunk";
