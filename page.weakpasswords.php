@@ -24,7 +24,7 @@ $email = isset($_REQUEST['email'])?$_REQUEST['email']:'';
 <?
 
 	echo "<table cellpadding=5><tr><td colspan=3><div class='content'><h2>"._("Weak Password Detection")."</h2></span></td></tr>\n";
-	echo "<tr><td><b>Type</b></td><td><b>Name</b></td><td><b>Secret</b></td><td><b>Message</b></td></tr>";
+	echo "<tr><td><b>"._("Type")."</b></td><td><b>"._("Name")."</b></td><td><b>"._("Secret")."</b></td><td><b>"._("Message")."</b></td></tr>";
 ?>
 	<?php 
 	if (is_null($selected)) $selected = array();
@@ -36,7 +36,7 @@ $email = isset($_REQUEST['email'])?$_REQUEST['email']:'';
 		}
 	}
 	else  {
-		echo "<tr><td colspan=3>No weak secrets detected on this system.</td></tr>";
+		echo "<tr><td colspan=3>"._("No weak secrets detected on this system.")."</td></tr>";
 	}
 	?>
 

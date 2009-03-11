@@ -26,7 +26,7 @@ function weakpasswords_get_config($engine) {
 			$weak = weakpasswords_get_users();
 			if(sizeof($weak) > 0)  {
 				foreach($weak as $details)  {
-					$extended_text = "Warning: The use of SIP/IAX passwords that are weak can allow hackers to make brute force registrations and possibly make calls through your PBX.  It is strongly recommended, you choose strong secrets.".$details['deviceortrunk']." ".$details['name']." has a weak secret of ".$details['secret'].": ".$details['message'];
+					$extended_text = sprintf(_("Warning: The use of SIP/IAX passwords that are weak can allow hackers to make brute force registrations and possibly make calls through your PBX.  It is strongly recommended, you choose strong secrets. %s %s  has a weak secret of %s: %s"), $details['deviceortrunk'], $details['name'], $details['secret'], $details['message']);
 					$nt->add_security("weakpasswords", $details['name'], $details['deviceortrunk']." ".$details['name'].": ".$details['message'],$extended_text);
 				}
 
@@ -59,16 +59,16 @@ function weakpasswords_get_users()  {
 		$reversed = strrev($secret);
 		$match = "0123456789";
 		if(strpos($match,$secret) || strpos($match,$reversed))  {
-			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => "Secret has sequential digits", "secret" => $secret);
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret has sequential digits"), "secret" => $secret);
 		}
 		else if($device == $secret)  {
-			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => "Secret same as device", "secret" => $secret);
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret same as device"), "secret" => $secret);
 		}
 		else if(preg_match("/(.)\\1{3,}/",$secret,$regs))  {
-			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => "Secret has consecutive digit ".$regs[1], "secret" => $secret);
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret has consecutive digit ").$regs[1], "secret" => $secret);
 		}
 		else if(strlen($secret) < 6)  {
-			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => "Secret less than 6 digits", "secret" => $secret);
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret less than 6 digits"), "secret" => $secret);
 		}
 	}
 	return $weak;
