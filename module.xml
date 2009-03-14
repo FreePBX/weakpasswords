@@ -1,10 +1,11 @@
 <module>
 	<rawname>weakpasswords</rawname>
 	<name>Weak Password Detection</name>
-	<version>2.5.0.0</version>
+	<version>2.5.0.1</version>
 	<type>setup</type>
 	<category>Internal Options &amp; Configuration</category>
 	<changelog>
+		*2.5.0.1* Consolidated individual security notices to a single notice with all details in extended text
 		*2.5.0.0* Initial release
 	</changelog>
 	<depends>

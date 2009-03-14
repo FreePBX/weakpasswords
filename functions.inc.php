@@ -25,10 +25,14 @@ function weakpasswords_get_config($engine) {
 			// Generate new notifications
 			$weak = weakpasswords_get_users();
 			if(sizeof($weak) > 0)  {
+				$extended_text = _("Warning: The use of SIP/IAX passwords that are weak can allow hackers to make brute force registrations and possibly make calls through your PBX.  It is strongly recommended, you choose strong secrets.")."<br>"; 
+				$count = 0;
 				foreach($weak as $details)  {
-					$extended_text = sprintf(_("Warning: The use of SIP/IAX passwords that are weak can allow hackers to make brute force registrations and possibly make calls through your PBX.  It is strongly recommended, you choose strong secrets. %s %s  has a weak secret of %s: %s"), $details['deviceortrunk'], $details['name'], $details['secret'], $details['message']);
-					$nt->add_security("weakpasswords", $details['name'], $details['deviceortrunk']." ".$details['name'].": ".$details['message'],$extended_text);
+					$extended_text .= sprintf(_("%s %s has a weak secret of %s: %s<br>"), $details['deviceortrunk'], $details['name'], $details['secret'], $details['message']);
+					$count++;
 				}
+				$nt->add_security("weakpasswords", "all", $count." "._("extensions/trunks has weak secrets"),$extended_text);
+
 
 			}
 		break;
@@ -51,10 +55,10 @@ function weakpasswords_get_users()  {
 		$tech = $arr['tech'];
 
 		if($id == $name)  {
-			$deviceortrunk = "Extension";
+			$deviceortrunk = _("Extension");
 		}
 		else  {
-			$deviceortrunk = "$tech Trunk";
+			$deviceortrunk = sprintf(_("%s Trunk"), $tech);
 		}
 		$reversed = strrev($secret);
 		$match = "0123456789";
