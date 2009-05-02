@@ -12,8 +12,8 @@
 //GNU General Public License for more details.
 
 function weakpasswords_get_config($engine) {
-        switch($engine) {
-                case "asterisk":
+	switch($engine) {
+		case "asterisk":
 			// Clear all weak password notifications
 			$nt = notifications::create($db);
 			$security_notifications = $nt->list_security();
@@ -25,15 +25,17 @@ function weakpasswords_get_config($engine) {
 			// Generate new notifications
 			$weak = weakpasswords_get_users();
 			if(sizeof($weak) > 0)  {
-				$extended_text = _("Warning: The use of SIP/IAX passwords that are weak can allow hackers to make brute force registrations and possibly make calls through your PBX.  It is strongly recommended, you choose strong secrets.")."<br>"; 
+				$extended_text = _("Warning: The use of weak SIP/IAX passwords can compromise this system resulting in toll theft of your telephony service.  You should change the reported devices and trunks to use strong secrets.")."<br /><br />"; 
 				$count = 0;
 				foreach($weak as $details)  {
-					$extended_text .= sprintf(_("%s %s has a weak secret of %s: %s<br>"), $details['deviceortrunk'], $details['name'], $details['secret'], $details['message']);
+					$extended_text .= sprintf(_("%s: %s / secret: %s => %s<br>"), $details['deviceortrunk'], $details['name'], $details['secret'], $details['message']);
 					$count++;
 				}
-				$nt->add_security("weakpasswords", "all", $count." "._("extensions/trunks has weak secrets"),$extended_text);
-
-
+				if ($count == 1) {
+					$nt->add_security("weakpasswords", "all", $count." "._("extension/trunk has weak secret"),$extended_text);
+				} else {
+					$nt->add_security("weakpasswords", "all", $count." "._("extensions/trunks have weak secrets"),$extended_text);
+				}
 			}
 		break;
 	}
