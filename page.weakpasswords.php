@@ -18,32 +18,21 @@ $action = isset($_REQUEST['action'])?$_REQUEST['action']:'';
 $email = isset($_REQUEST['email'])?$_REQUEST['email']:'';
 
 ?>
-
 </div>
 <p>
-<?
-
+<?php
 	echo "<table cellpadding=5><tr><td colspan=3><div class='content'><h2>"._("Weak Password Detection")."</h2></span></td></tr>\n";
 	echo "<tr><td><b>"._("Type")."</b></td><td><b>"._("Name")."</b></td><td><b>"._("Secret")."</b></td><td><b>"._("Message")."</b></td></tr>";
-?>
-	<?php 
-	if (is_null($selected)) $selected = array();
 	$weak = weakpasswords_get_users();
 	if(sizeof($weak) > 0)  {
 		foreach ($weak as $details) {
 			echo '<tr><td>'.$details['deviceortrunk'].'</td><td>'.$details['name'].'</td><td>'.$details['secret'].'</td><td>'.$details['message']."</td></tr>";
-		
 		}
-	}
-	else  {
+	} else  {
 		echo "<tr><td colspan=3>"._("No weak secrets detected on this system.")."</td></tr>";
 	}
-	?>
-
-<?php
-			// implementation of module hook
-			// object was initialized in config.php
-			echo $module_hook->hookHtml;
+	// implementation of module hook
+	// object was initialized in config.php
+	echo $module_hook->hookHtml;
 ?>
-	
 	</table>
