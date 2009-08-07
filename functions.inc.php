@@ -28,7 +28,7 @@ function weakpasswords_get_config($engine) {
 				$extended_text = _("Warning: The use of weak SIP/IAX passwords can compromise this system resulting in toll theft of your telephony service.  You should change the reported devices and trunks to use strong secrets.")."<br /><br />"; 
 				$count = 0;
 				foreach($weak as $details)  {
-					$extended_text .= sprintf(_("%s: %s / secret: %s => %s<br>"), $details['deviceortrunk'], $details['name'], $details['secret'], $details['message']);
+					$extended_text .= sprintf(_("%s: %s / %s<br>"), $details['deviceortrunk'], $details['name'], $details['message']);
 					$count++;
 				}
 				if ($count == 1) {
@@ -64,7 +64,11 @@ function weakpasswords_get_users()  {
 		}
 		$reversed = strrev($secret);
 		$match = "0123456789";
-		if(strpos($match,$secret) || strpos($match,$reversed))  {
+		if($secret == '')
+		{
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret is empty"), "secret" => $secret);
+		}
+		else if(strpos($match,$secret) || strpos($match,$reversed))  {
 			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret has sequential digits"), "secret" => $secret);
 		}
 		else if($device == $secret)  {
