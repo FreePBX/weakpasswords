@@ -22,6 +22,6 @@
 	<menuitems>
 		<weakpasswords>Weak Password Detection</weakpasswords>
 	</menuitems>
-	<location>release/2.6/weakpasswords-2.6.0.0.tgz</location>
-	<md5sum>2a11d1d7eef40e706acbc95972a8c975</md5sum>
+	<location>release/2.6/weakpasswords-2.6.0.1.tgz</location>
+	<md5sum>836ac99b32f6a5f0bc5196a205274ebd</md5sum>
 </module>
