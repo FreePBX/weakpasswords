@@ -17,7 +17,7 @@
 	<depends>
 		<version>2.5.0</version>
 	</depends>
-	<description>This module detects weak SIP secrets and sets security notifictions accordingly
+	<description>This module detects weak SIP secrets and sets security notifications accordingly
 	</description>
 	<menuitems>
 		<weakpasswords>Weak Password Detection</weakpasswords>
