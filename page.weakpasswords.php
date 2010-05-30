@@ -18,10 +18,9 @@ $action = isset($_REQUEST['action'])?$_REQUEST['action']:'';
 $email = isset($_REQUEST['email'])?$_REQUEST['email']:'';
 
 ?>
-</div>
 <p>
 <?php
-	echo "<table cellpadding=5><tr><td colspan=3><div class='content'><h2>"._("Weak Password Detection")."</h2></span></td></tr>\n";
+	echo "<table cellpadding=5><tr><td colspan=3><div class='content'><h2>"._("Weak Password Detection")."</h2></td></tr>\n";
 	echo "<tr><td><b>"._("Type")."</b></td><td><b>"._("Name")."</b></td><td><b>"._("Secret")."</b></td><td><b>"._("Message")."</b></td></tr>";
 	$weak = weakpasswords_get_users();
 	if(sizeof($weak) > 0)  {
