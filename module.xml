@@ -1,5 +1,6 @@
 <module>
 	<rawname>weakpasswords</rawname>
+	<repo>standard</repo>
 	<name>Weak Password Detection</name>
 	<version>2.8.0.0</version>
 	<publisher>Schmoozecom.com</publisher>
