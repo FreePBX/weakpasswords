@@ -71,7 +71,7 @@ function weakpasswords_get_users()  {
 		else if(strpos($match,$secret) || strpos($match,$reversed))  {
 			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret has sequential digits"), "secret" => $secret);
 		}
-		else if($device == $secret)  {
+		else if(isset($device) && $device == $secret)  {
 			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret same as device"), "secret" => $secret);
 		}
 		else if(preg_match("/(.)\\1{3,}/",$secret,$regs))  {
