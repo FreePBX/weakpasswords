@@ -2,12 +2,13 @@
 	<rawname>weakpasswords</rawname>
 	<repo>standard</repo>
 	<name>Weak Password Detection</name>
-	<version>2.9.0.0</version>
+	<version>2.9.0.1</version>
 	<publisher>Schmoozecom.com</publisher>
 	<license>GPLv2</license>
 	<type>tool</type>
 	<category>System Administration</category>
 	<changelog>
+		*2.9.0.1* #4914
 		*2.9.0.0* 2.9 Update
 		*2.8.0.0* #4309
 		*2.7.0.0* spelling, localizations
@@ -26,6 +27,6 @@
 	<menuitems>
 		<weakpasswords>Weak Password Detection</weakpasswords>
 	</menuitems>
-	<location>release/2.9/weakpasswords-2.9.0.0.tgz</location>
-	<md5sum>5f447106f401530ed1ac16638e1eabd8</md5sum>
+	<location>release/2.9/weakpasswords-2.9.0.1.tgz</location>
+	<md5sum>84c107e5e7c16b84b04b7a8839d942ae</md5sum>
 </module>
