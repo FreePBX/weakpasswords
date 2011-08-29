@@ -5,19 +5,10 @@
 	<version>2.9.0.1</version>
 	<publisher>Schmoozecom.com</publisher>
 	<license>GPLv2</license>
-	<type>tool</type>
-	<category>System Administration</category>
+	<category>Admin</category>
 	<changelog>
 		*2.9.0.1* #4914
 		*2.9.0.0* 2.9 Update
-		*2.8.0.0* #4309
-		*2.7.0.0* spelling, localizations
-		*2.6.0.1* #3735
-		*2.6.0.0* misc
-		*2.5.0.3* #3663
-		*2.5.0.2* changes to warning msg, moved to Tools tab, System Administration
-		*2.5.0.1* Consolidated individual security notices to a single notice with all details in extended text
-		*2.5.0.0* Initial release
 	</changelog>
 	<depends>
 		<version>2.5.0</version>
