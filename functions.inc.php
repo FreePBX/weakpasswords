@@ -69,13 +69,13 @@ function weakpasswords_get_users()  {
 		{
 			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret is empty"), "secret" => $secret);
 		}
-		else if(strpos($match,$secret) || strpos($match,$reversed))  {
+		else if(strpos($match,$secret) || strpos($match,$reversed) && strlen($secret) < 10)  {
 			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret has sequential digits"), "secret" => $secret);
 		}
 		else if(isset($device) && $device == $secret)  {
 			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret same as device"), "secret" => $secret);
 		}
-		else if(preg_match("/(.)\\1{3,}/",$secret,$regs))  {
+		else if(preg_match("/(.)\\1{3,}/",$secret,$regs) && strlen($secret) < 10)  {
 			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret has consecutive digit ").$regs[1], "secret" => $secret);
 		}
 		else if(strlen($secret) < 6)  {
