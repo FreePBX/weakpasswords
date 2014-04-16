@@ -2,12 +2,13 @@
 	<rawname>weakpasswords</rawname>
 	<repo>standard</repo>
 	<name>Weak Password Detection</name>
-	<version>2.11.0.0</version>
-	<publisher>Schmoozecom.com</publisher>
-	<license>GPLv2</license>
+	<version>2.11.0.1</version>
+	<publisher>Schmooze Com Inc</publisher>
+	<license>GPLv3+</license>
+	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<category>Reports</category>
 	<changelog>
-		*2.11.0.0* relax sequential and repeated digits warning on long passwords
+		*2.11.0.1* relax sequential and repeated digits warning on long passwords
 		*2.10.0.1* #5478 
 		*2.10.0.0* new version changes
 		*2.9.0.1* #4914
