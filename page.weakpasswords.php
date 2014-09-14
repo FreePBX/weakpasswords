@@ -25,7 +25,7 @@ $email = isset($_REQUEST['email'])?$_REQUEST['email']:'';
 		echo "<tr><td colspan=3>"._("No weak secrets detected on this system.")."</td></tr>";
 	}
 	// implementation of module hook
-	$module_hook == moduleHook::create();
+	$module_hook = moduleHook::create();
 	echo $module_hook->hookHtml;
 ?>
 	</table>
