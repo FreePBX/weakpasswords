@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* $Id: */
 if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 //	License for all code of this FreePBX module can be found in the license file inside the module directory
@@ -25,7 +25,7 @@ $email = isset($_REQUEST['email'])?$_REQUEST['email']:'';
 		echo "<tr><td colspan=3>"._("No weak secrets detected on this system.")."</td></tr>";
 	}
 	// implementation of module hook
-	// object was initialized in config.php
+	$module_hook == moduleHook::create();
 	echo $module_hook->hookHtml;
 ?>
 	</table>
