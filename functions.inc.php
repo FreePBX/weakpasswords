@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* $Id: */
 if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 //	License for all code of this FreePBX module can be found in the license file inside the module directory
@@ -18,7 +18,7 @@ function weakpasswords_get_config($engine) {
 			// Generate new notifications
 			$weak = weakpasswords_get_users();
 			if(sizeof($weak) > 0)  {
-				$extended_text = _("Warning: The use of weak SIP/IAX passwords can compromise this system resulting in toll theft of your telephony service.  You should change the reported devices and trunks to use strong secrets.")."<br /><br />"; 
+				$extended_text = _("Warning: The use of weak SIP/IAX passwords can compromise this system resulting in toll theft of your telephony service.  You should change the reported devices and trunks to use strong secrets.")."<br /><br />";
 				$count = 0;
 				foreach($weak as $details)  {
 					$extended_text .= sprintf(_("%s: %s / %s<br>"), $details['deviceortrunk'], $details['name'], $details['message']);
@@ -73,7 +73,29 @@ function weakpasswords_get_users()  {
 		else if(strlen($secret) < 6)  {
 			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret less than 6 digits"), "secret" => $secret);
 		}
+		else if(dictionary_check($secret)){
+			$weak[] = array("deviceortrunk" => $deviceortrunk, "name" => $name, "message" => _("Secret is based on a dictionary word"), "secret" => $secret);
+		}
 	}
 	return $weak;
 }
-?>
+
+function dictionary_check($userpass){
+  $path = __DIR__ .'/dict';
+  $dictionaries = scandir($path);
+  foreach($dictionaries as $dict){
+  	if(substr($dict, -3) == 'txt'){
+    	$passwords = file($path . '/' .$dict);
+      foreach($passwords as $current){
+      	$current = trim($current);
+      	$userpass = trim($userpass);
+        if($current == $userpass){
+      		return True;
+        }
+      }
+			//Entire password list stored in memory so cleaning up for safety.
+      $passwords = NULL;
+      unset($passwords);
+    }
+  }
+}
