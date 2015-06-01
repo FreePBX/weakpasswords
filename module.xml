@@ -2,12 +2,13 @@
 	<rawname>weakpasswords</rawname>
 	<repo>standard</repo>
 	<name>Weak Password Detection</name>
-	<version>12.0.3</version>
+	<version>13.0.1alpha1</version>
 	<publisher>Schmooze Com Inc</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<category>Reports</category>
 	<changelog>
+		*13.0.1alpha1* Visuals 
 		*12.0.3* Language Updates
 		*12.0.2* Redo module_hook calls to use static obj
 		*2.11.0.1* relax sequential and repeated digits warning on long passwords
@@ -22,7 +23,7 @@
 	<description>This module detects weak SIP secrets and sets security notifications accordingly
 	</description>
 	<supported>
-		<version>12.0</version>
+		<version>13.0</version>
 	</supported>
 	<menuitems>
 		<weakpasswords>Weak Password Detection</weakpasswords>
