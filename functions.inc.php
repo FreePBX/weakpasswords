@@ -8,7 +8,7 @@ function weakpasswords_get_config($engine) {
 	switch($engine) {
 		case "asterisk":
 			// Clear all weak password notifications
-			$nt = notifications::create($db);
+			$nt = notifications::create();
 			$security_notifications = $nt->list_security();
 			foreach($security_notifications as $notification)  {
 				if($notification['module'] == "weakpasswords")  {
