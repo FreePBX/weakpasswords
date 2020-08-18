@@ -21,8 +21,8 @@
 	<depends>
 		<version>12.0.1rc16</version>
 	</depends>
-	<description>This module detects weak SIP secrets and sets security notifications accordingly
-	</description>
+	<description>This module detects weak SIP secrets and sets security notifications accordingly</description>
+  	<more-info>https://wiki.freepbx.org/display/F2/Weak+Password+Detection</more-info>
 	<supported>
 		<version>13.0</version>
 	</supported>
