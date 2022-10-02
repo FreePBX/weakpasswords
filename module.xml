@@ -2,21 +2,21 @@
 	<rawname>weakpasswords</rawname>
 	<repo>standard</repo>
 	<name>Weak Password Detection</name>
-	<version>16.0.1</version>
+	<version>17.0.1</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<category>Reports</category>
 	<changelog>
-		*16.0.1* 16.0 release
+		*17.0.1alpha* 17.0.1 alpha release
 	</changelog>
 	<depends>
-		<version>16.0</version>
+		<version>17.0</version>
 	</depends>
 	<description>This module detects weak SIP secrets and sets security notifications accordingly
 	</description>
 	<supported>
-		<version>16.0</version>
+		<version>17.0</version>
 	</supported>
 	<menuitems>
 		<weakpasswords>Weak Password Detection</weakpasswords>
