@@ -4,6 +4,7 @@
 	<name>Weak Password Detection</name>
 	<version>17.0.1</version>
 	<publisher>Sangoma Technologies Corporation</publisher>
+	<more-info>https://sangomakb.atlassian.net/wiki/spaces/PG/pages/26771582/PBX+GUI+-+Weak+Password+Detection</more-info>
 	<license>GPLv3+</license>
 	<licenselink>http://www.gnu.org/licenses/gpl-3.0.txt</licenselink>
 	<category>Reports</category>
