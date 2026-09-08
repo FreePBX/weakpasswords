@@ -17,7 +17,7 @@ function weakpasswords_get_config($engine) {
 			}
 			// Generate new notifications
 			$weak = weakpasswords_get_users();
-			if(sizeof($weak) > 0)  {
+			if(count($weak) > 0)  {
 				$extended_text = _("Warning: The use of weak SIP/IAX passwords can compromise this system resulting in toll theft of your telephony service.  You should change the reported devices and trunks to use strong secrets.")."<br /><br />"; 
 				$count = 0;
 				foreach($weak as $details)  {
@@ -35,8 +35,6 @@ function weakpasswords_get_config($engine) {
 }
 
 function weakpasswords_get_users()  {
-	global $db;
-
 	$sql = "SELECT 'SIP' as tech,s.id as id, s2.data as device,s.data as secret FROM sip s LEFT JOIN sip s2 ON s.id=s2.id AND s2.keyword='account' WHERE s.keyword='secret'";
 	$sipsecrets = sql($sql,"getAll",DB_FETCHMODE_ASSOC);
 	$sql = "SELECT 'IAX' as tech,s.id as id, s2.data as device,s.data as secret FROM iax s LEFT JOIN iax s2 ON s.id=s2.id AND s2.keyword='account' WHERE s.keyword='secret'";
@@ -44,10 +42,10 @@ function weakpasswords_get_users()  {
 	$secrets = array_merge($sipsecrets,$iaxsecrets);
 	$weak = array();
 	foreach($secrets as $arr)  {
-		$name = $arr['device'];
-		$id = $arr['id'];
-		$secret = $arr['secret'];
-		$tech = $arr['tech'];
+		$name = (string) $arr['device'];
+		$id = (string) $arr['id'];
+		$secret = (string) $arr['secret'];
+		$tech = (string) $arr['tech'];
 
 		if($id == $name)  {
 			$deviceortrunk = _("Extension");
