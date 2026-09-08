@@ -31,7 +31,7 @@ $email = isset($_REQUEST['email'])?$_REQUEST['email']:'';
 							<tbody>
 								<?php
 								$weak = weakpasswords_get_users();
-								if(sizeof($weak) > 0)  {
+								if(count($weak) > 0)  {
 									foreach ($weak as $details) {
 										echo '<tr><td>'.$details['deviceortrunk'].'</td><td>'.$details['name'].'</td><td>'.$details['secret'].'</td><td>'.$details['message']."</td></tr>";
 									}

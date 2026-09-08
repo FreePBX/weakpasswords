@@ -4,7 +4,7 @@ if (!defined('FREEPBX_IS_AUTH')) { die('No direct script access allowed'); }
 //	Copyright 2013 Schmooze Com Inc.
 //
 // Remove all weak password notifications
-$nt = notifications::create($db);
+$nt = notifications::create();
 $security_notifications = $nt->list_security();
 foreach($security_notifications as $notification)  {
 	if($notification['module'] == "weakpasswords")  {
